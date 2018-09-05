@@ -18,6 +18,7 @@ public enum Property {
     ignoreChanged(""),
     buildAnyways(""),
     buildSnapshotDependencies("false"),
+    buildParents("false"),
     impacted("true"),
     ignoreAllReactorProjects("false"),
     useNativeGit("false");

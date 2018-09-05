@@ -43,6 +43,7 @@ public class Configuration {
     public final String ignoreChangedPattern;
     public final String buildAnywaysPattern;
     public final boolean buildSnapshotDependencies;
+    public final boolean buildParents;
     public final Set<MavenProject> ignoredProjects;
     public final Set<MavenProject> buildAnywaysProjects;
     public final boolean impacted;
@@ -76,6 +77,7 @@ public class Configuration {
             outputFile = parseOutputFile(session, Property.outputFile.getValue());
             writeChanged = Boolean.valueOf(Property.writeChanged.getValue());
             buildSnapshotDependencies = Boolean.valueOf(Property.buildSnapshotDependencies.getValue());
+            buildParents = Boolean.valueOf(Property.buildParents.getValue());
             impacted = Boolean.valueOf(Property.impacted.getValue());
             ignoreAllReactorProjects = Boolean.valueOf(Property.ignoreAllReactorProjects.getValue());
             ignoreChangedPattern = Property.ignoreChanged.getValue();
@@ -174,6 +176,7 @@ public class Configuration {
                         .append("ignoreChangedPattern", ignoreChangedPattern)
                         .append("buildAnyways", buildAnywaysPattern)
                         .append("buildSnapshotDependencies", buildSnapshotDependencies)
+                        .append("buildParents", buildParents)
                         .append("impacted", impacted)
                         .append("ignoreAllReactorProjects", ignoreAllReactorProjects)
                         .append("useNativeGit", useNativeGit)

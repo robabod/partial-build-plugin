@@ -74,6 +74,9 @@ public class ChangedMojo extends AbstractMojo {
     @Parameter(required = false, property = Property.PREFIX + "buildSnapshotDependencies", defaultValue = "false")
     public String buildSnapshotDependencies;
 
+    @Parameter(required = false, property = Property.PREFIX + "buildParents", defaultValue = "false")
+    public String buildParents;
+
     @Parameter(required = false, property = Property.PREFIX + "impacted", defaultValue = "true")
     public boolean impacted;
 
