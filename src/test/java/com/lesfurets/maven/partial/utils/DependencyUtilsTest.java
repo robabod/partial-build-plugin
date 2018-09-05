@@ -214,6 +214,13 @@ public class DependencyUtilsTest {
         assertThat(dependencies).isEqualTo(Stream.of(m8).collect(Collectors.toSet()));
     }
 
+    @Test
+    public void collectParents() throws Exception {
+        HashSet<MavenProject> dependencies = new HashSet<>();
+        DependencyUtils.collectParents(allProjects, m6, dependencies);
+        assertThat(dependencies).isEqualTo(Stream.of(parent).collect(Collectors.toSet()));
+    }
+
     private static MavenProject newMavenProject(String groupId, String artefactId, String version,
                     MavenProject parent) {
         MavenProject mavenProject = new MavenProject();
