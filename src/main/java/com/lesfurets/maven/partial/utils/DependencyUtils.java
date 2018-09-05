@@ -60,9 +60,7 @@ public class DependencyUtils {
       // go through each parent of the project, until it's no longer in the list of projects
       MavenProject parent = project.getParent();
       if (null != parent && projects.contains(parent)) {
-        if (!dependents.contains(parent)) {
-          dependents.add(parent);
-        }
+        dependents.add(parent);
         collectParents(projects, parent, dependents);
       }
   }
