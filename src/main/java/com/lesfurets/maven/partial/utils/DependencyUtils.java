@@ -55,7 +55,19 @@ public class DependencyUtils {
                         });
     }
 
-    private static boolean isDependentOf(MavenProject possibleDependent, MavenProject project) {
+  public static void collectParents(List<MavenProject> projects, MavenProject project,
+      Set<MavenProject> dependents) {
+      // go through each parent of the project, until it's no longer in the list of projects
+    MavenProject parent = project.getParent();
+      while (null != parent && projects.contains(parent)) {
+        if (!dependents.contains(parent)) {
+          dependents.add(parent);
+        }
+        parent = parent.getParent();
+      }
+  }
+
+  private static boolean isDependentOf(MavenProject possibleDependent, MavenProject project) {
         return possibleDependent.getDependencies().stream().anyMatch(d -> equals(project, d)) ||
                         possibleDependent.getBuildPlugins().stream().anyMatch(p -> equals(project, p));
     }

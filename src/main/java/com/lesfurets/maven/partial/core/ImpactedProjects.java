@@ -5,6 +5,7 @@ package com.lesfurets.maven.partial.core;
 
 import static com.lesfurets.maven.partial.utils.DependencyUtils.collectDependenciesInSnapshot;
 import static com.lesfurets.maven.partial.utils.DependencyUtils.collectDependents;
+import static com.lesfurets.maven.partial.utils.DependencyUtils.collectParents;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,6 +36,11 @@ public class ImpactedProjects {
             mavenSession.getProjects().stream()
                             .filter(changed::contains)
                             .forEach(p -> collectDependenciesInSnapshot(mavenSession.getProjects(), p, changed));
+        }
+        if (configuration.buildParents) {
+            mavenSession.getProjects().stream()
+                            .filter(changed::contains)
+                            .forEach(p -> collectParents(mavenSession.getProjects(), p, changed));
         }
         return mavenSession.getProjects().stream().filter(changed::contains).collect(Collectors.toList());
     }
