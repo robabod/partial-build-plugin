@@ -19,6 +19,4 @@ verified &= !buildLog.contains(" subchild42")
 
 verified &= buildLog.contains(" BUILD SUCCESS")
 
-if (!verified) println(buildLog)
-
 return verified;
